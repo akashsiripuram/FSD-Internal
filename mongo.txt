@@ -1,0 +1,80 @@
+use FsdInternal
+switched to db FsdInternal
+
+
+db.users.insertMany([{}])
+//output
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67f41ad60a50a814a3378101')
+  }
+}
+
+//insert
+
+db.users.insertMany([{
+name:"Akash",
+doj:"19-02-2025",
+salary:5000,
+department:"CSE"},
+{
+name:"Antony",
+doj:"20-03-2025",
+salary:500000,
+department:"ECE"
+}]);
+
+//output
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67f41bd60a50a814a3378102'),
+    '1': ObjectId('67f41bd60a50a814a3378103')
+  }
+}
+
+
+//display
+
+db.users.find({});
+//output
+{
+  _id: ObjectId('67f41bd60a50a814a3378102'),
+  name: 'Akash',
+  doj: '19-02-2025',
+  salary: 5000,
+  department: 'CSE'
+}
+{
+  _id: ObjectId('67f41bd60a50a814a3378103'),
+  name: 'Antony',
+  doj: '20-03-2025',
+  salary: 500000,
+  department: 'ECE'
+}
+
+//update
+db.users.updateOne({
+  name:"Antony"},{$set:{department:"IT"}});
+
+//output
+
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+//delete
+db.users.deleteOne({name:"Akash"});
+
+//output
+{
+  acknowledged: true,
+  deletedCount: 1
+}
